@@ -32,6 +32,16 @@ after_success:
   - pip install coveralls
   - coveralls
 
+deploy:
+  provider: s3
+  access_key_id: $s3_access_key_id
+  secret_access_key: $s3_secret_access_key
+  bucket: "b3-travis-artifacts"
+  skip_cleanup: true
+  acl: public_read
+  region: eu-west-1
+  local_dir: dist
+
 notifications:
   webhooks:
     urls:
